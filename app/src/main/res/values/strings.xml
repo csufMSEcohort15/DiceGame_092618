@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DiceGame Team2</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="instruction"> It is nice and helpful to have a quick reference on the mechanics of the game, instructions, and how the winner is determined. We need to have a way to show the user how to play the game, and the rules to follow.
+ </string>
+
+</resources>

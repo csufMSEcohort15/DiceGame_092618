@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     public void onValueChange(NumberPicker picker, int val1, int val2) {
         die4 = picker.getValue();
         dice.add(die4);
-        try
+        /*try
         {
             String imageName = "die_" + dice.get(3) + ".jpg";
             InputStream stream = getAssets().open(imageName);
@@ -127,8 +127,24 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         catch (IOException e)
         {
             e.printStackTrace();
+        }*/
+        for (int dieofSet = 0; dieofSet < 4; dieofSet++){
+            String imageName = "die_" + dice.get(dieofSet) + ".jpg";
+
+            try{
+                InputStream stream = getAssets().open(imageName);
+                Drawable d = Drawable.createFromStream(stream,null);
+                diceImageViews.get(dieofSet).setImageDrawable(d);
+
+            } catch (IOException e){
+                e.printStackTrace();
+            }
         }
+
+        //result the message
+        String msg1 = "The computer first dice is " + die1 + ", the second dice is " + die2 + ".";
         String msg3 = "The player dice is " + die3 + "." + " Player dice 2 is " + die4;
+        rollResult1.setText(msg1);
         rollResult2.setText(msg3);
         computerScore = CalcModSum(die1, die2);
         playerScore = CalcModSum(die3, die4);
@@ -161,7 +177,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 
     public void rollDice(View v) {
 
-
+        rollResult1.setText("");
+        rollResult2.setText("");
 
         // computer roll dices
         die1 = rand.nextInt(6)+1;
@@ -175,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         dice.add(die3);
 
         // link the images from assets folder
-        for (int dieofSet = 0; dieofSet < 3; dieofSet++){
+        /*for (int dieofSet = 0; dieofSet < 3; dieofSet++){
             String imageName = "die_" + dice.get(dieofSet) + ".jpg";
 
             try{
@@ -189,14 +206,14 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         }
 
         //result the message
-        String msg1 = "The computer first dice is " + die1 + ", the second dice is " + die2 + ".";
+        String msg1 = "The computer first dice is " + die1 + ", the second dice is " + die2 + ".";*/
 
         String msg2 = "The player dice is " + die3 + "." + " Player need to select number...";
         diceValueSelector.setFirstDieRolled(die3);
         //player need to select number.................
 
         //display the result message
-        rollResult1.setText(msg1);
+        //rollResult1.setText(msg1);
         rollResult2.setText(msg2);
         diceValueSelector.setOnValueChangeListener(this);
         diceValueSelector.show(getSupportFragmentManager(), "Dice Number Picker");

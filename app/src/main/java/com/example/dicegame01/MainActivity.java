@@ -2,6 +2,7 @@ package com.example.dicegame01;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.inputmethodservice.InputMethodService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -61,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
     //ArrayList to hold all the dice images
     ArrayList<ImageView> diceImageViews;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
         diceImageViews.add(die2Image);
         diceImageViews.add(die3Image);
         diceImageViews.add(die4Image);
+
 
 
         //help button
@@ -176,6 +181,9 @@ public class MainActivity extends AppCompatActivity implements NumberPicker.OnVa
 
 
     public void rollDice(View v) {
+
+        InputMethodManager imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
         rollResult1.setText("");
         rollResult2.setText("");
